@@ -1,0 +1,77 @@
+﻿@model IEnumerable<basiccrud.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="AddorEdit" >
+        <i class="fa-solid fa-plus">Create New</i>
+    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BeneficaryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BankName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SWIFTCODE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeneficaryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SWIFTCODE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-action="AddorEdit" asp-route-id="@item.Id">Edit</a> |
+                @* <form asp-action="Delete" asp-route-id="@item.Id">
+                    <button type="submit" class="btn btn-danger">
+                        <onclick="return confirm('Are You Sure You Want to Delete Your Entities')"></onclick>
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </form> *@
+                    <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return confirm('Are You Sure You Want to Delete Your Entities');">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </form>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
